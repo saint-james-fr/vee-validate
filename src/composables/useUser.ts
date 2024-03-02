@@ -6,7 +6,7 @@ type UserState = {
   show: boolean;
 };
 
-const state: UserState = reactive<UserState>({
+const userState: UserState = reactive<UserState>({
   users: [],
   selected: undefined,
   show: false,
@@ -23,23 +23,23 @@ export const useUser = () => {
     const data: User = { email, password, id };
 
     // Check if the user already exists
-    const index = state.users.findIndex((u) => u.id === data.id);
+    const index = userState.users.findIndex((u) => u.id === data.id);
     console.log();
     if (index !== -1) {
       // If the user exists, update it
-      state.users[index] = data;
+      userState.users[index] = data;
       return;
     }
     // If the user does not exist, add it
-    state.users.push(data);
+    userState.users.push(data);
   };
 
   const destroy = (id: number) => {
     console.log("destroy", id);
-    const index = state.users.findIndex((u) => u.id === id);
+    const index = userState.users.findIndex((u) => u.id === id);
     if (index !== -1) {
-      state.users.splice(index, 1);
+      userState.users.splice(index, 1);
     }
   };
-  return { state, upsert, destroy };
+  return { userState, upsert, destroy };
 };

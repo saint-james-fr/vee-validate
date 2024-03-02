@@ -3,11 +3,11 @@
     <h1>Users</h1>
     <ul>
       <li
-        v-for="user in state.users"
+        v-for="user in userState.users"
         :key="user.id"
         @click="
-          state.selected = user;
-          state.show = true;
+          userState.selected = user;
+          userState.show = true;
         "
       >
         <div class="flex">
@@ -24,5 +24,5 @@
 <script setup lang="ts">
 import { useUser } from "../composables/useUser";
 
-const { state, destroy } = useUser();
+const { userState, destroy } = useUser();
 </script>

@@ -1,9 +1,9 @@
 <template>
   <UsersList />
-  <Modal v-if="state.show">
+  <Modal v-if="userState.show">
     <Form />
   </Modal>
-  <button @click="state.show = true">Create New</button>
+  <button @click="userState.show = true">Create New</button>
 </template>
 
 <script setup lang="ts">
@@ -12,5 +12,5 @@ import Modal from "./components/Modal.vue";
 import UsersList from "./components/UsersList.vue";
 import { useUser } from "./composables/useUser";
 
-const { state } = useUser();
+const { userState } = useUser();
 </script>

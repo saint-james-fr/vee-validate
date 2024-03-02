@@ -1,7 +1,7 @@
 import zod from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
-export const formSchema = toTypedSchema(
+export const userFormSchema = toTypedSchema(
   zod.object({
     email: zod
       .string({ required_error: "This field is required" })
@@ -13,6 +13,12 @@ export const formSchema = toTypedSchema(
       })
       .max(20, {
         message: "Password must be at most 20 characters",
-      }),
+      })
+      .refine(
+        (value) => {
+          return value !== "password";
+        },
+        { message: "Password cannot be 'password'" }
+      ),
   })
 );

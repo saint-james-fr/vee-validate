@@ -16,8 +16,8 @@
       <div class="error">{{ errors.password }}</div>
     </label>
     <button role="submit" :disabled="read || !meta.valid">Submit</button>
-    <button @click="state.show = false">Cancel</button>
-    <button v-if="state.selected" @click="destroy(state.selected.id)">
+    <button @click="userState.show = false">Cancel</button>
+    <button v-if="userState.selected" @click="destroy(userState.selected.id)">
       Delete
     </button>
   </form>
@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { defineProps, onBeforeUnmount, onMounted, watch } from "vue";
 import { useField, useForm } from "vee-validate";
-import { formSchema } from "../utils/zod";
+import { userFormSchema } from "../utils/zod";
 import { useUser } from "../composables/useUser";
 import { scrollToError } from "../utils/form";
 
@@ -35,7 +35,7 @@ type Props = {
 };
 defineProps<Props>();
 
-const { upsert, state, destroy } = useUser();
+const { upsert, userState, destroy } = useUser();
 const emit = defineEmits(["onCreate"]);
 
 // handleSubmit is our safe way to submit the form
@@ -43,7 +43,7 @@ const emit = defineEmits(["onCreate"]);
 // meta to check if the form is valid
 // setvalues to set the values of the form if we want to edit
 const { handleSubmit, errors, meta, setValues } = useForm({
-  validationSchema: formSchema,
+  validationSchema: userFormSchema,
 });
 
 // This is where the binding happens
@@ -54,25 +54,25 @@ const { value: password } = useField<User["password"]>("password");
 const sendForm = handleSubmit(
   (values) => {
     upsert({ ...values });
-    state.show = false;
+    userState.show = false;
   },
   ({ errors }) => scrollToError(errors)
 );
 
 // At load, charg values selected if exists
 onMounted(() => {
-  if (state.selected) {
-    setValues(state.selected);
+  if (userState.selected) {
+    setValues(userState.selected);
   }
 });
 
 onBeforeUnmount(() => {
-  state.selected = undefined;
+  userState.selected = undefined;
 });
 
 // Watch for changes in the selected user
 watch(
-  () => state.selected,
+  () => userState.selected,
   (selected) => {
     if (!selected) return;
     setValues(selected);
