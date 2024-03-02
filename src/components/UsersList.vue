@@ -13,6 +13,8 @@
         <div class="flex">
           <div>{{ user.email }}</div>
           <div>{{ user.password }}</div>
+          <!-- delete -->
+          <div @click.stop="destroy(user.id)">Delete</div>
         </div>
       </li>
     </ul>
@@ -22,6 +24,5 @@
 <script setup lang="ts">
 import { useUser } from "../composables/useUser";
 
-const { state } = useUser();
+const { state, destroy } = useUser();
 </script>
-

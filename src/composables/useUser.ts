@@ -33,5 +33,13 @@ export const useUser = () => {
     // If the user does not exist, add it
     state.users.push(data);
   };
-  return { state, upsert };
+
+  const destroy = (id: number) => {
+    console.log("destroy", id);
+    const index = state.users.findIndex((u) => u.id === id);
+    if (index !== -1) {
+      state.users.splice(index, 1);
+    }
+  };
+  return { state, upsert, destroy };
 };

@@ -17,6 +17,9 @@
     </label>
     <button role="submit" :disabled="read || !meta.valid">Submit</button>
     <button @click="state.show = false">Cancel</button>
+    <button v-if="state.selected" @click="destroy(state.selected.id)">
+      Delete
+    </button>
   </form>
 </template>
 
@@ -32,7 +35,7 @@ type Props = {
 };
 defineProps<Props>();
 
-const { upsert, state } = useUser();
+const { upsert, state, destroy } = useUser();
 const emit = defineEmits(["onCreate"]);
 
 // handleSubmit is our safe way to submit the form
