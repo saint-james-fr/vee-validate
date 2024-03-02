@@ -1,26 +1,36 @@
-const fakeData = {
-  email: "admin@gmail.com",
-  password: "motdepasse",
+import { reactive } from "vue";
+
+let initialId = 2;
+
+type UserState = {
+  users: User[];
+  selected: User | undefined;
+  show: boolean;
 };
 
-// simultate fetch with 200ms
-const fetchData = (): Promise<LoginData> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(fakeData);
-    }, 1000);
-  });
-};
+const state: UserState = reactive({
+  users: [
+    { email: "user1@yahooo.fr", password: "password1", id: 0 },
+    { email: "user2@gmail.com", password: "password2", id: 1 },
+  ] as User[],
+  selected: undefined as User | undefined,
+  show: false,
+});
 
 export const useLogin = () => {
-  const insert = (values: LoginData) => {
-    console.log(values, "sending data to the server");
+  const upsert = (user: User) => {
+    initialId++;
+    const data = { ...user, id: initialId };
+    console.log(user.id);
+    // Check if the user already exists
+    const index = state.users.findIndex((u) => u.id === user.id);
+    if (index !== -1) {
+      // If the user exists, update it
+      state.users[index] = user;
+      return;
+    }
+    // If the user does not exist, add it
+    state.users.push(data);
   };
-
-  const select = async (id: string): Promise<LoginData> => {
-    console.log("fetching data from the server with this id:", id);
-    const result = await fetchData();
-    return result;
-  };
-  return { insert, select };
+  return { state, upsert };
 };

@@ -1,18 +1,16 @@
 <template>
-  <Form />
+  <UsersList />
+  <Modal v-if="state.show">
+    <Form @on-create="state.show = false" />
+  </Modal>
+  <button @click="state.show = true">Create New</button>
 </template>
 
 <script setup lang="ts">
 import Form from "./Form.vue";
+import Modal from "./Modal.vue";
+import UsersList from "./UsersList.vue";
 import { useLogin } from "./composables/useLogin";
-import { onMounted, ref } from "vue";
 
-const { select } = useLogin();
-const id = "1";
-const fetched = ref<LoginData>();
-
-onMounted(async () => {
-  const result = await select(id);
-  fetched.value = result;
-});
+const { state } = useLogin();
 </script>
