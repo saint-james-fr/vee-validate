@@ -3,7 +3,7 @@
     <label>
       <span>Email</span>
       <input name="email" v-model="email" type="email" :disabled="read" />
-      <div>{{ errors.email }}</div>
+      <div class="error">{{ errors.email }}</div>
     </label>
     <label>
       Password
@@ -13,7 +13,7 @@
         type="password"
         :disabled="read"
       />
-      <div>{{ errors.password }}</div>
+      <div class="error">{{ errors.password }}</div>
     </label>
     <button role="submit" :disabled="read || !meta.valid">Submit</button>
     <button @click="state.show = false">Cancel</button>
@@ -23,16 +23,16 @@
 <script setup lang="ts">
 import { defineProps, onBeforeUnmount, onMounted, watch } from "vue";
 import { useField, useForm } from "vee-validate";
-import { formSchema } from "./utils/zod";
-import { useLogin } from "./composables/useLogin";
-import { scrollToError } from "./utils/form";
+import { formSchema } from "../utils/zod";
+import { useUser } from "../composables/useUser";
+import { scrollToError } from "../utils/form";
 
 type Props = {
   read?: boolean;
 };
 defineProps<Props>();
 
-const { upsert, state } = useLogin();
+const { upsert, state } = useUser();
 const emit = defineEmits(["onCreate"]);
 
 // handleSubmit is our safe way to submit the form
@@ -50,9 +50,8 @@ const { value: password } = useField<User["password"]>("password");
 // Method to trigger a save in the db
 const sendForm = handleSubmit(
   (values) => {
-    if (!state.selected) return;
-    upsert({ ...values, id: state.selected.id });
-    emit("onCreate");
+    upsert({ ...values });
+    state.show = false;
   },
   ({ errors }) => scrollToError(errors)
 );
