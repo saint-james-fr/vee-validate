@@ -20,39 +20,33 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps, watchEffect } from "vue";
 import { useField, useForm } from "vee-validate";
 import { formSchema } from "./utils/zod";
 import { useLogin } from "./composables/useLogin";
 import { scrollToError } from "./utils/form";
-import { onMounted } from "vue";
 
 type Props = {
+  data?: LoginData;
   read?: boolean;
-  id: string;
 };
 const props = defineProps<Props>();
 
 const { handleSubmit, errors, meta, setValues } = useForm({
   validationSchema: formSchema,
 });
-const { select, insert } = useLogin();
+const { insert } = useLogin();
 
 // this is where the magic happens
-const { value: email } = useField("email");
-const { value: password } = useField("password");
+const { value: email } = useField<LoginData["email"]>("email");
+const { value: password } = useField<LoginData["password"]>("password");
 
-// Get the composable to insert in the form
+// If the form is in read mode, we assign the data to the form fields
+if (props.data && props.read) {
+  setValues(props.data);
+}
 
-onMounted(async () => {
-  if (props.read) {
-    try {
-      setValues(await select(props.id));
-    } catch (error) {
-      console.error(error);
-    }
-  }
-});
-
+// Methods
 const sendForm = handleSubmit(
   (values) => {
     insert(values);
@@ -60,37 +54,3 @@ const sendForm = handleSubmit(
   ({ errors }) => scrollToError(errors)
 );
 </script>
-
-<style scoped>
-form {
-  display: flex;
-  align-items: space-between;
-  flex-direction: column;
-  gap: 40rem;
-  width: min(100vw, 400px);
-  margin: 0 auto;
-}
-
-label {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  gap: 1rem;
-
-  span {
-    display: block;
-  }
-
-  div {
-    position: absolute;
-    bottom: -2rem;
-    color: red;
-  }
-
-  input {
-    width: 100%;
-    flex-grow: 1;
-    max-width: 300px;
-  }
-}
-</style>

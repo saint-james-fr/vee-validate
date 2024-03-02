@@ -53,3 +53,35 @@ button:focus-visible {
 #app {
   width: 100%;
 }
+
+form {
+  display: flex;
+  align-items: space-between;
+  flex-direction: column;
+  gap: 40rem;
+  width: min(100vw, 400px);
+  margin: 0 auto;
+
+  div {
+    position: absolute;
+    bottom: -2rem;
+    color: red;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    gap: 1rem;
+
+    span {
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      flex-grow: 1;
+      max-width: 300px;
+    }
+  }
+}

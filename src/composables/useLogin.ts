@@ -8,7 +8,7 @@ const fetchData = (): Promise<LoginData> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(fakeData);
-    }, 200);
+    }, 1000);
   });
 };
 
