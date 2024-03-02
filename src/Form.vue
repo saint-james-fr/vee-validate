@@ -45,7 +45,11 @@ const { value: password } = useField("password");
 
 onMounted(async () => {
   if (props.read) {
-    setValues(await select(props.id));
+    try {
+      setValues(await select(props.id));
+    } catch (error) {
+      console.error(error);
+    }
   }
 });
 
