@@ -15,17 +15,16 @@ const state: UserState = reactive<UserState>({
 let initialId = 0;
 export const useUser = () => {
   const upsert = (user: Partial<User>) => {
-    initialId++;
-
     const { email, password } = user;
     if (!email || !password) {
       return;
     }
-    const data: User = { email, password, id: initialId };
+    const id = user.id || initialId;
+    const data: User = { email, password, id };
 
     // Check if the user already exists
     const index = state.users.findIndex((u) => u.id === data.id);
-
+    console.log();
     if (index !== -1) {
       // If the user exists, update it
       state.users[index] = data;

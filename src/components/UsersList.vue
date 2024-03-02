@@ -25,23 +25,3 @@ import { useUser } from "../composables/useUser";
 const { state } = useUser();
 </script>
 
-<style scoped>
-ul {
-  list-style: none;
-  padding: 0;
-  max-width: 500px;
-}
-li {
-  padding: 10px;
-}
-.flex {
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-}
-
-.flex:hover {
-  background-color: #150d0d2b;
-  cursor: pointer;
-}
-</style>
