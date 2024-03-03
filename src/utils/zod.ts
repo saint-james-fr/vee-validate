@@ -22,3 +22,19 @@ export const userFormSchema = toTypedSchema(
       ),
   })
 );
+
+export const bookFormSchema = toTypedSchema(
+  zod.object({
+    user_id: zod.number().optional(),
+    title: zod.string({ required_error: "This field is required" }),
+    author: zod.string({ required_error: "This field is required" }),
+    year: zod.string({ required_error: "This field is required" }),
+    genre: zod.enum([
+      "fiction",
+      "non-fiction",
+      "fantasy",
+      "mystery",
+      "thriller",
+    ]),
+  })
+);

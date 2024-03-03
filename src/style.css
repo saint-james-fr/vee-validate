@@ -99,21 +99,25 @@ form {
   backdrop-filter: blur(5px);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  max-width: 500px;
-}
-li {
-  padding: 10px;
-}
-.flex {
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
 }
 
-.flex:hover {
-  background-color: #150d0d2b;
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+
+tr:hover {
   cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.109);
 }

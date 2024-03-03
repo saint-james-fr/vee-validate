@@ -6,13 +6,20 @@ type UserState = {
   show: boolean;
 };
 
+let initialId = 0;
+
+const initialUser = {
+  email: "maxencerobinet@gmail.com",
+  password: "adminazaz",
+  id: initialId,
+};
+
 const userState: UserState = reactive<UserState>({
-  users: [],
+  users: [initialUser],
   selected: undefined,
   show: false,
 });
 
-let initialId = 0;
 export const useUser = () => {
   const upsert = (user: Partial<User>) => {
     const { email, password } = user;
@@ -24,7 +31,6 @@ export const useUser = () => {
 
     // Check if the user already exists
     const index = userState.users.findIndex((u) => u.id === data.id);
-    console.log();
     if (index !== -1) {
       // If the user exists, update it
       userState.users[index] = data;
@@ -35,9 +41,10 @@ export const useUser = () => {
   };
 
   const destroy = (id: number) => {
-    console.log("destroy", id);
     const index = userState.users.findIndex((u) => u.id === id);
     if (index !== -1) {
+      userState.selected = undefined;
+      userState.show = false;
       userState.users.splice(index, 1);
     }
   };

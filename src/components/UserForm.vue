@@ -15,11 +15,11 @@
       />
       <div class="error">{{ errors.password }}</div>
     </label>
-    <button role="submit" :disabled="read || !meta.valid">Submit</button>
-    <button @click="userState.show = false">Cancel</button>
+    <button role="submit">Submit</button>
     <button v-if="userState.selected" @click="destroy(userState.selected.id)">
       Delete
     </button>
+    <button @click="userState.show = false">Cancel</button>
   </form>
 </template>
 
@@ -36,13 +36,12 @@ type Props = {
 defineProps<Props>();
 
 const { upsert, userState, destroy } = useUser();
-const emit = defineEmits(["onCreate"]);
 
 // handleSubmit is our safe way to submit the form
 // errors to show the errors in the form
 // meta to check if the form is valid
 // setvalues to set the values of the form if we want to edit
-const { handleSubmit, errors, meta, setValues } = useForm({
+const { handleSubmit, errors, setValues } = useForm({
   validationSchema: userFormSchema,
 });
 
@@ -56,16 +55,20 @@ const sendForm = handleSubmit(
     upsert({ ...values });
     userState.show = false;
   },
-  ({ errors }) => scrollToError(errors)
+  ({ errors }) => {
+    console.error(errors);
+    scrollToError(errors);
+  }
 );
 
-// At load, charg values selected if exists
+// At load, charge existings values if exists
 onMounted(() => {
   if (userState.selected) {
     setValues(userState.selected);
   }
 });
 
+// When the component is unmounted, we clean the selected user
 onBeforeUnmount(() => {
   userState.selected = undefined;
 });

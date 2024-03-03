@@ -1,23 +1,31 @@
 <template>
   <div class="">
     <h1>Users</h1>
-    <ul>
-      <li
-        v-for="user in userState.users"
-        :key="user.id"
-        @click="
-          userState.selected = user;
-          userState.show = true;
-        "
-      >
-        <div class="flex">
-          <div>{{ user.email }}</div>
-          <div>{{ user.password }}</div>
-          <!-- delete -->
-          <div @click.stop="destroy(user.id)">Delete</div>
-        </div>
-      </li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="user in userState.users"
+          :key="user.id"
+          @click="
+            userState.selected = user;
+            userState.show = true;
+          "
+        >
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <button @click.stop="destroy(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
