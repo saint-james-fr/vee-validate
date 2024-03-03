@@ -36,5 +36,6 @@ const { bookState } = useBook();
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+  padding-inline: 4rem;
 }
 </style>
