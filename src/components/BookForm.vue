@@ -5,7 +5,7 @@
     <InputField name="year" type="date" label="Date de publication" />
     <SelectField name="genre" label="Genre" :options="genres" />
     <SelectField
-      name="user_id"
+      name="user_email"
       label="User"
       :options="userState.users.map((user) => user.email)"
     />
