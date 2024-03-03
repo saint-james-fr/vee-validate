@@ -14,7 +14,7 @@ const bookState: BookState = reactive<BookState>({
 
 let initialId = 0;
 export const useBook = () => {
-  const upsert = (book: Partial<Book> & { user_email: string }) => {
+  const upsert = (book: Partial<Book> & { user_email?: string }) => {
     const { author, title, year, genre, user_email } = book;
     if (!author || !title || !year || !genre) {
       return;

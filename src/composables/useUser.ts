@@ -22,11 +22,14 @@ const userState: UserState = reactive<UserState>({
 
 export const useUser = () => {
   const upsert = (user: Partial<User>) => {
+    let id: number;
     const { email, password } = user;
     if (!email || !password) {
       return;
     }
-    const id = user.id || initialId;
+
+    id = user.id ? user.id : userState.users.length + 1;
+
     const data: User = { email, password, id };
 
     // Check if the user already exists

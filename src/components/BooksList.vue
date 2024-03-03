@@ -26,7 +26,7 @@
           <td>{{ book.title }}</td>
           <td>{{ book.genre }}</td>
           <td>
-            {{ book.user_id }}
+            {{ book.user_email }}
           </td>
           <td>
             <button @click.stop="destroy(book.id)">Delete</button>
