@@ -24,8 +24,10 @@ export const useBook = () => {
 
     const data: Book = { author, title, year, genre, id, user_email };
 
-    // Check if the user already exists
-    const index = bookState.books.findIndex((u) => u.id === data.id);
+    // Check if the book already exists
+    const index = bookState.books.findIndex(
+      (u) => u.user_email === data.user_email
+    );
     if (index !== -1) {
       // If the user exists, update it
       bookState.books[index] = data;
