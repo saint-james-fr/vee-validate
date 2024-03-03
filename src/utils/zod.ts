@@ -25,7 +25,7 @@ export const userFormSchema = toTypedSchema(
 
 export const bookFormSchema = toTypedSchema(
   zod.object({
-    user_id: zod.number().optional(),
+    user_email: zod.string().email().optional(),
     title: zod.string({ required_error: "This field is required" }),
     author: zod.string({ required_error: "This field is required" }),
     year: zod.string({ required_error: "This field is required" }),

@@ -1,7 +1,7 @@
 <template>
   <label>
     <span>{{ label }}</span>
-    <input v-model="value" v-bin="$attrs" />
+    <input v-model="value" v-bind="$attrs" />
     <div class="error">{{ errorMessage }}</div>
   </label>
 </template>

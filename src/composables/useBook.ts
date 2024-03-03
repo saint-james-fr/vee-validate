@@ -14,15 +14,15 @@ const bookState: BookState = reactive<BookState>({
 
 let initialId = 0;
 export const useBook = () => {
-  const upsert = (book: Partial<Book>) => {
-    const { author, title, year, genre, user_id } = book;
+  const upsert = (book: Partial<Book> & { user_email: string }) => {
+    const { author, title, year, genre, user_email } = book;
     if (!author || !title || !year || !genre) {
       return;
     }
 
-    const id = book.id || initialId;
+    const id = book.id ?? initialId;
 
-    const data: Book = { author, title, year, genre, id, user_id };
+    const data: Book = { author, title, year, genre, id, user_email };
 
     // Check if the user already exists
     const index = bookState.books.findIndex((u) => u.id === data.id);

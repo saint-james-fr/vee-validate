@@ -6,7 +6,7 @@ type User = {
 
 type Book = {
   id: number;
-  user_id?: number;
+  user_email?: string;
   title: string;
   author: string;
   year: string;
