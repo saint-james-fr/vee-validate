@@ -1,11 +1,7 @@
 <template>
   <label>
     <span>{{ label }}</span>
-    <select v-model="value" v-bind="$attrs">
-      <option v-for="option in options" :key="option" :value="option">
-        {{ option }}
-      </option>
-    </select>
+    <input v-model="value" v-bind="$attrs" />
     <div class="error">{{ errorMessage }}</div>
   </label>
 </template>
@@ -14,11 +10,12 @@
 import { defineProps } from "vue";
 import { useField } from "vee-validate";
 
-const props = defineProps<{
+type Props = {
   name: string;
   label: string;
-  options: string[];
-}>();
+};
+
+const props = defineProps<Props>();
 
 const { value, errorMessage } = useField(() => props.name);
 </script>

@@ -18,12 +18,12 @@
 </template>
 
 <script setup lang="ts">
-import UserForm from "./components/UserForm.vue";
+import UserForm from "./components/User/UserForm.vue";
+import UsersList from "./components/User/UsersList.vue";
 import Modal from "./components/Modal.vue";
-import BookForm from "./components/BookForm.vue";
-import BooksList from "./components/BooksList.vue";
+import BookForm from "./components/Book/BookForm.vue";
+import BooksList from "./components/Book/BooksList.vue";
 
-import UsersList from "./components/UsersList.vue";
 import { useUser } from "./composables/useUser";
 import { useBook } from "./composables/useBook";
 
@@ -39,3 +39,4 @@ const { bookState } = useBook();
   padding-inline: 4rem;
 }
 </style>
+./components/Book/BookForm.vue./components/Book/BooksList.vue./components/User/UserForm.vue./components/User/UsersList.vue

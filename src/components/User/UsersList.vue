@@ -21,7 +21,9 @@
           <td>{{ user.email }}</td>
           <td>{{ user.password }}</td>
           <td>
-            <button @click.stop="destroy(user.id)">Delete</button>
+            <button @click.stop="destroy(user, userState, 'users')">
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
@@ -30,7 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUser } from "../composables/useUser";
+import { useUser } from "../../composables/useUser";
+import { destroy } from "../../utils/db";
 
-const { userState, destroy } = useUser();
+const { userState } = useUser();
 </script>

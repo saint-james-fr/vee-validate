@@ -1,4 +1,4 @@
-import zod from "zod";
+import { z as zod } from "zod";
 import { toTypedSchema } from "@vee-validate/zod";
 
 export const userFormSchema = toTypedSchema(

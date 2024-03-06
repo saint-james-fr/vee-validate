@@ -1,11 +1,11 @@
 type User = {
   email: string;
   password: string;
-  id: number;
+  id?: number;
 };
 
 type Book = {
-  id: number;
+  id?: number;
   user_email?: string;
   title: string;
   author: string;
@@ -14,3 +14,13 @@ type Book = {
 };
 
 type Genre = "fiction" | "non-fiction" | "fantasy" | "mystery" | "thriller";
+
+type SharedStateProperties<T> = {
+  selected: T | undefined;
+  show: boolean;
+};
+
+type BookState = SharedStateProperties<Book> & { books: Book[] };
+type UserState = SharedStateProperties<User> & { users: User[] };
+
+type Table = "users" | "books";

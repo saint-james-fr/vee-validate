@@ -26,10 +26,12 @@
           <td>{{ book.title }}</td>
           <td>{{ book.genre }}</td>
           <td>
-            {{ book.user_email ?? "No user"}}
+            {{ book.user_email ?? "No user" }}
           </td>
           <td>
-            <button @click.stop="destroy(book.id)">Delete</button>
+            <button @click.stop="destroy(book, bookState, 'books')">
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
@@ -38,9 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { useBook } from "../composables/useBook";
-import { useUser } from "../composables/useUser";
+import { useBook } from "../../composables/useBook";
+import { destroy } from "../../utils/db";
 
-const { bookState, destroy } = useBook();
-const { userState } = useUser();
+const { bookState } = useBook();
 </script>
