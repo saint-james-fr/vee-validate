@@ -68,13 +68,9 @@ onBeforeUnmount(() => {
 });
 
 // 4. Methods
-const getYear = (date: string) => {
-  return date.slice(0, 4);
-};
-
 const sendForm = handleSubmit(
   (values) => {
-    upsert({ ...values, year: getYear(values.year) }, bookState, "books");
+    upsert({ ...values, year: values.year.slice(0, 4) }, bookState, "books");
     bookState.show = false;
   },
   ({ errors }) => {
