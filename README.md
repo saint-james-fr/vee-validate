@@ -34,3 +34,8 @@ Crud operations belong to utils/db and should not be tied to reactive values. Th
 - State can be contextual and does not have to be global.
 - Validation does not belong to their representation in form but to models.
 - Composables do not haveto deal with DB operations.
+
+## Inspirations
+
+[lien 1](https://itnext.io/a-conceptual-model-of-state-in-vue-3-4-9390c8e68aa5)
+[lien 2](https://www.telerik.com/blogs/common-mistakes-creating-composition-functions-vue)
