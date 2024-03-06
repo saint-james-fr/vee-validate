@@ -16,7 +16,7 @@ Main points:
 - schema validation externalized, errormessages at the same place
 - state
 
-## reactive "functional" state
+## reactive "contextual" state
 
 Seems a good idea that State should be linked to a model in a reactive state scoped to a context - a page.
 
