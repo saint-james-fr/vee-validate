@@ -18,7 +18,10 @@
     <button role="submit">Submit</button>
     <button
       v-if="userState.selected"
-      @click="destroy(userState.selected, userState, 'users')"
+      @click="
+        destroy(userState.selected, userState, 'users');
+        userState.show = false;
+      "
     >
       Delete
     </button>

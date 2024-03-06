@@ -15,7 +15,10 @@
     <button @click="bookState.show = false">Cancel</button>
     <button
       v-if="bookState.selected"
-      @click="destroy(bookState.selected, bookState, 'books')"
+      @click="
+        destroy(bookState.selected, bookState, 'books');
+        bookState.show = false;
+      "
     >
       Delete
     </button>
