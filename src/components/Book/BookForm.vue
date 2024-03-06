@@ -5,6 +5,7 @@
     <InputField name="year" type="date" label="Date de publication*" />
     <SelectField name="genre" label="Genre*" :options="genres" />
     <SelectField
+      v-if="userState.users.length > 0"
       name="user_email"
       label="User"
       :options="userState.users.map((user) => user.email)"
