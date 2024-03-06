@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent="sendForm">
-    <InputField name="author" type="text" label="Auteur *" />
-    <InputField name="title" type="text" label="Titre *" />
-    <InputField name="year" type="date" label="Date de publication *" />
-    <SelectField name="genre" label="Genre *" :options="genres" />
+    <InputField name="author" type="text" label="Auteur*" />
+    <InputField name="title" type="text" label="Titre*" />
+    <InputField name="year" type="date" label="Date de publication*" />
+    <SelectField name="genre" label="Genre*" :options="genres" />
     <SelectField
       name="user_email"
       label="User"

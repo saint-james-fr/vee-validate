@@ -1,12 +1,12 @@
 <template>
   <form @submit.prevent="sendForm">
     <label>
-      <span>Email</span>
+      <span>Email*</span>
       <input name="email" v-model="email" type="email" :disabled="read" />
       <div class="error">{{ errors.email }}</div>
     </label>
     <label>
-      Password
+      Password*
       <input
         name="password"
         v-model="password"
