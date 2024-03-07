@@ -1,41 +1,41 @@
-# POC : Form Validation / Reactivity / Composability
+# Proof of Concept: Form Validation, Reactivity, and Composability
 
-## How to?
+## How to Use
 
-Start by checking UserForm, then BookForm which an even better implementation.
-Have a look at the composables holding state - here with a reactive.
+1. **UserForm:** Begin exploring with the `UserForm` component.
+2. **BookForm:** Dive deeper into the `BookForm`, showcasing refined implementation techniques.
+3. **Composables:** Examine the composables responsible for state management, leveraging reactive principles for seamless interaction.
 
-As we don't have a DB, i hold the reactive state as the db itself for the sake of simplicity.
-But this is just another layer.
+While we don't utilize a traditional database, I've implemented reactive state as a simplified alternative. This choice prioritizes clarity and ease of understanding, but the system can be easily extended to integrate a database layer if needed.
 
 ## VeeValidate with Zod
 
-Main points:
+### Key Features:
 
-- best UX for forms : scrollTo, Error Message, Disabled + Native HTML Errors, native Form, label and input binding
-- schema validation externalized, errormessages at the same place
-- state
+- Provides optimal User Experience (UX) for forms, including smooth scrolling, error message handling, disabled states, and native HTML error support.
+- Externalizes schema validation, keeping error messages neatly organized.
+- Harnesses the power of reactive state management.
 
-## reactive "contextual" state
+## Reactive "Contextual" State
 
-Seems a good idea that State should be linked to a model in a reactive state scoped to a context - a page.
+Introducing the concept of contextual state, where state is intricately linked to a specific model within a reactive state scoped to a defined context (e.g., a page). This approach enhances organization and simplifies state management.
 
-## Crud
+## CRUD Operations
 
-Crud operations belong to utils/db and should not be tied to reactive values. They're independent ATOMIC asynchronous operations.
+CRUD operations reside within the `utils/db` module, deliberately decoupled from reactive values for increased modularity and efficiency. These operations are atomic and asynchronous, ensuring reliability and scalability.
 
-- create a new one from scratch
-- read aka show in table
-- update by selecting an item in a row
-- delete from list or modal
+- **Create:** Generate new entries effortlessly.
+- **Read:** Display entries within a table format for easy reference.
+- **Update:** Seamlessly modify entries by selecting them from a row.
+- **Delete:** Remove entries intuitively, either from a list or through a modal interface.
 
 ## Conclusion
 
-- State can be contextual and does not have to be global.
-- Validation does not belong to their representation in form but to models.
-- Composables do not haveto deal with DB operations.
+- State management can be contextualized, eliminating the need for a global state and promoting cleaner architecture.
+- Validation logic is properly abstracted from form representations and integrated with underlying models.
+- Composables are designed to be agnostic of database operations, fostering greater flexibility and reusability.
 
 ## Inspirations
 
-[lien 1](https://itnext.io/a-conceptual-model-of-state-in-vue-3-4-9390c8e68aa5)
-[lien 2](https://www.telerik.com/blogs/common-mistakes-creating-composition-functions-vue)
+1. [Conceptual Model of State in Vue 3](https://itnext.io/a-conceptual-model-of-state-in-vue-3-4-9390c8e68aa5)
+2. [Common Mistakes When Creating Composition Functions in Vue](https://www.telerik.com/blogs/common-mistakes-creating-composition-functions-vue)
