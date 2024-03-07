@@ -1,4 +1,4 @@
-# Proof of Concept: Form Validation, Reactivity, and Composability
+# Proof of Concept: Form Validation, Reactivity, and Composability within Vue (Zod, VeeValidate, Reactive)
 
 ## How to Use
 
